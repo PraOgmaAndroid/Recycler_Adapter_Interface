@@ -1,9 +1,11 @@
 package com.ogmaconceptions.recycler_adapter_interface.ui
 
-import androidx.appcompat.app.AppCompatActivity
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.ogmaconceptions.recycler_adapter_interface.R
 import com.ogmaconceptions.recycler_adapter_interface.adapter.ListingAdapter
 import com.ogmaconceptions.recycler_adapter_interface.databinding.ActivityMainBinding
 import com.ogmaconceptions.recycler_adapter_interface.interfaces.CountHandle
@@ -24,6 +26,21 @@ class MainActivity : AppCompatActivity(),CountHandle {
 
         mainBinding.flBtn.setOnClickListener {
             listObj.addItem(getRandomString(10))
+        }
+
+        mainBinding.topAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.forward -> {
+                    Intent(this, SecondActivity::class.java).also { intent ->
+                        startActivity(intent)
+
+                    }
+                    true
+                }
+                else -> {
+                    false
+                }
+            }
         }
 
     }
